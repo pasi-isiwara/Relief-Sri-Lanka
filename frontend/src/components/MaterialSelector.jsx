@@ -54,7 +54,7 @@ export function MaterialSelector({
       const isExpanded = expandedCategory === category;
       const selectedCount = selectedMaterials.filter(m => materials.includes(m.type)).length;
       return <div key={category} className="category-container">
-            <button onClick={() => setExpandedCategory(isExpanded ? null : category)} className="category-header">
+            <button type="button" onClick={() => setExpandedCategory(isExpanded ? null : category)} className="category-header">
               <div className="category-title">
                 <Icon className="category-icon" />
                 <span className="category-name">{t.categories[category]}</span>

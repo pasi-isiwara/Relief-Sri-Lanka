@@ -3,6 +3,7 @@ export const translations = {
     appTitle: 'Relief Sri Lanka',
     requestHelp: 'Request Help',
     viewRequests: 'View Requests',
+    donations: 'Donations',
     name: 'Your Name',
     namePlaceholder: 'Enter your full name',
     address: 'Address / Location',
@@ -51,12 +52,32 @@ export const translations = {
       shelter: 'Shelter',
       clothing: 'Clothing',
       other: 'Other'
+    },
+    donationPage: {
+      title: 'Support Flood Relief Efforts',
+      subtitle: 'Your donation can make a difference in the lives of those affected by floods',
+      collectionCenters: 'Material Collection Centers',
+      collectionDescription: 'Drop off relief materials at any of these locations:',
+      bankDetails: 'Bank Details for Donations',
+      bankDescription: 'You can also make monetary donations to the official Presidential Relief Fund:',
+      accountName: 'Presidential Secretariat - Flood Relief Fund',
+      bankName: 'Bank of Ceylon',
+      accountNumber: '87451236',
+      branch: 'Colombo Fort Branch',
+      swiftCode: 'BCEYLKLX',
+      donateNow: 'Donate Now',
+      nearYou: 'Near You',
+      openHours: 'Open Hours',
+      contactInfo: 'Contact',
+      acceptedItems: 'Accepted Items',
+      allItems: 'All relief materials including food, clothing, medicine, and shelter supplies'
     }
   },
   si: {
     appTitle: 'සහන ශ්‍රී ලංකා',
     requestHelp: 'උදව් ඉල්ලන්න',
     viewRequests: 'ඉල්ලීම් බලන්න',
+    donations: 'පරිත්‍යාග',
     name: 'ඔබේ නම',
     namePlaceholder: 'ඔබේ සම්පූර්ණ නම ඇතුළත් කරන්න',
     address: 'ලිපිනය / ස්ථානය',
@@ -105,12 +126,32 @@ export const translations = {
       shelter: 'නවාතැන',
       clothing: 'ඇඳුම්',
       other: 'වෙනත්'
+    },
+    donationPage: {
+      title: 'ගංවතුර සහන ප්‍රයත්නයන්ට සහාය වන්න',
+      subtitle: 'ඔබේ පරිත්‍යාගය ගංවතුරෙන් පීඩාවට පත් අයගේ ජීවිතවල වෙනසක් කළ හැකිය',
+      collectionCenters: 'ද්‍රව්‍ය එකතු කිරීමේ මධ්‍යස්ථාන',
+      collectionDescription: 'මෙම ස්ථාන වලින් ඕනෑම ස්ථානයකට සහන ද්‍රව්‍ය භාර දෙන්න:',
+      bankDetails: 'පරිත්‍යාග සඳහා බැංකු විස්තර',
+      bankDescription: 'ඔබට නිල ජනාධිපති සහන අරමුදලට මුදල් පරිත්‍යාග ද කළ හැකිය:',
+      accountName: 'ජනාධිපති ලේකම් කාර්යාලය - ගංවතුර සහන අරමුදල',
+      bankName: 'ලංකා බැංකුව',
+      accountNumber: '87451236',
+      branch: 'කොළඹ කොටුව ශාඛාව',
+      swiftCode: 'BCEYLKLX',
+      donateNow: 'දැන් පරිත්‍යාග කරන්න',
+      nearYou: 'ඔබ ආසන්නයේ',
+      openHours: 'විවෘත වේලාවන්',
+      contactInfo: 'සම්බන්ධතා',
+      acceptedItems: 'පිළිගත් අයිතම',
+      allItems: 'ආහාර, ඇඳුම්, ඖෂධ සහ නවාතැන් සැපයුම් ඇතුළු සියලුම සහන ද්‍රව්‍ය'
     }
   },
   ta: {
     appTitle: 'நிவாரண இலங்கை',
     requestHelp: 'உதவி கோரவும்',
     viewRequests: 'கோரிக்கைகளைக் காண்க',
+    donations: 'நன்கொடைகள்',
     name: 'உங்கள் பெயர்',
     namePlaceholder: 'உங்கள் முழு பெயரை உள்ளிடவும்',
     address: 'முகவரி / இடம்',
@@ -159,6 +200,25 @@ export const translations = {
       shelter: 'தங்குமிடம்',
       clothing: 'உடைகள்',
       other: 'மற்றவை'
+    },
+    donationPage: {
+      title: 'வெள்ள நிவாரண முயற்சிகளுக்கு ஆதரவு',
+      subtitle: 'வெள்ளத்தால் பாதிக்கப்பட்டவர்களின் வாழ்க்கையில் உங்கள் நன்கொடை மாற்றத்தை ஏற்படுத்தும்',
+      collectionCenters: 'பொருள் சேகரிப்பு மையங்கள்',
+      collectionDescription: 'இந்த இடங்களில் ஏதேனும் ஒன்றில் நிவாரண பொருட்களை விட்டுச் செல்லவும்:',
+      bankDetails: 'நன்கொடைகளுக்கான வங்கி விவரங்கள்',
+      bankDescription: 'அதிகாரப்பூர்வ ஜனாதிபதி நிவாரண நிதிக்கு பண நன்கொடையும் செய்யலாம்:',
+      accountName: 'ஜனாதிபதி செயலகம் - வெள்ள நிவாரண நிதி',
+      bankName: 'இலங்கை வங்கி',
+      accountNumber: '87451236',
+      branch: 'கொழும்பு கோட்டை கிளை',
+      swiftCode: 'BCEYLKLX',
+      donateNow: 'இப்போது நன்கொடை செய்யவும்',
+      nearYou: 'உங்களுக்கு அருகில்',
+      openHours: 'திறந்த நேரங்கள்',
+      contactInfo: 'தொடர்பு',
+      acceptedItems: 'ஏற்றுக்கொள்ளப்பட்ட பொருட்கள்',
+      allItems: 'உணவு, உடைகள், மருந்து மற்றும் தங்குமிட பொருட்கள் உட்பட அனைத்து நிவாரண பொருட்கள்'
     }
   }
 };

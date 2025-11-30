@@ -3,6 +3,7 @@ import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { LanguageSwitcher } from './components/LanguageSwitcher';
 import { RequestForm } from './components/RequestForm';
 import { RequestFeed } from './components/RequestFeed';
+import { DonationPage } from './components/DonationPage';
 import { useRequests } from './hooks/useRequests';
 import { HeartHandshakeIcon } from 'lucide-react';
 import './App.css';
@@ -45,12 +46,22 @@ function AppContent() {
               {t.viewRequests}
               {activeTab === 'view' && <div className="tab-indicator" />}
             </button>
+            <button onClick={() => setActiveTab('donations')} className={`tab-button ${activeTab === 'donations' ? 'active' : ''}`}>
+              {t.donations}
+              {activeTab === 'donations' && <div className="tab-indicator" />}
+            </button>
           </div>
         </div>
       </div>
 
       <main className="app-main">
-        {activeTab === 'request' ? <RequestForm onSubmit={handleSubmit} /> : <RequestFeed requests={requests} loading={loading} />}
+        {activeTab === 'request' ? (
+          <RequestForm onSubmit={handleSubmit} />
+        ) : activeTab === 'view' ? (
+          <RequestFeed requests={requests} loading={loading} />
+        ) : (
+          <DonationPage />
+        )}
       </main>
 
       <footer className="app-footer">

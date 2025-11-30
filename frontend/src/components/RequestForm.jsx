@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { MaterialSelector } from './MaterialSelector';
 import { MapPinIcon, PhoneIcon, PlusIcon, XIcon, LoaderIcon } from 'lucide-react';
@@ -18,6 +18,8 @@ export function RequestForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isGettingLocation, setIsGettingLocation] = useState(false);
   const [message, setMessage] = useState(null);
+  const autoSubmitTimerRef = useRef(null);
+  
   const getGPSLocation = () => {
     setIsGettingLocation(true);
     navigator.geolocation.getCurrentPosition(position => {
@@ -35,41 +37,68 @@ export function RequestForm({
       });
     });
   };
+
   const addContactNumber = () => {
     setContactNumbers([...contactNumbers, '']);
   };
+
   const updateContactNumber = (index, value) => {
     const updated = [...contactNumbers];
     updated[index] = value;
     setContactNumbers(updated);
   };
+
   const removeContactNumber = index => {
     setContactNumbers(contactNumbers.filter((_, i) => i !== index));
   };
-  const handleSubmit = async e => {
-    e.preventDefault();
+  
+  const handleSubmit = useCallback(async (e, isAutoSubmit = false) => {
+    if (e) {
+      e.preventDefault();
+    }
+    
     setMessage(null);
-    if (!name.trim() || !address.trim() || materials.length === 0 || !contactNumbers.some(n => n.trim())) {
+    
+    // Clear auto-submit timer
+    if (autoSubmitTimerRef.current) {
+      clearTimeout(autoSubmitTimerRef.current);
+    }
+    
+    // Validation: Phone number is always required
+    if (!contactNumbers.some(n => n.trim())) {
       setMessage({
         type: 'error',
-        text: 'Please fill all required fields'
+        text: 'At least one contact number is required'
       });
       return;
     }
+    
+    // For manual submission, all fields are required
+    if (!isAutoSubmit) {
+      if (!name.trim() || !address.trim() || materials.length === 0) {
+        setMessage({
+          type: 'error',
+          text: 'Please fill all required fields'
+        });
+        return;
+      }
+    }
+    
     setIsSubmitting(true);
     const success = await onSubmit({
-      name: name.trim(),
-      address: address.trim(),
+      name: name.trim() || 'Unknown',
+      address: address.trim() || 'Not provided',
       gpsLocation,
-      materials,
+      materials: materials.length > 0 ? materials : [{ type: 'other', quantity: 1 }],
       contactNumbers: contactNumbers.filter(n => n.trim()),
-      language
+      language,
+      isAutoSubmit
     });
     setIsSubmitting(false);
     if (success) {
       setMessage({
         type: 'success',
-        text: t.requestSubmitted
+        text: isAutoSubmit ? 'Request auto-submitted successfully' : t.requestSubmitted
       });
       setName('');
       setAddress('');
@@ -83,7 +112,35 @@ export function RequestForm({
         text: t.errorSubmitting
       });
     }
-  };
+  }, [contactNumbers, materials, name, address, gpsLocation, language, onSubmit, t.requestSubmitted, t.errorSubmitting]);
+
+  // Reset auto-submit timer on any input change
+  const resetAutoSubmitTimer = useCallback(() => {
+    if (autoSubmitTimerRef.current) {
+      clearTimeout(autoSubmitTimerRef.current);
+    }
+    
+    // Only set timer if there's at least one contact number
+    const hasContactNumber = contactNumbers.some(n => n.trim());
+    if (hasContactNumber) {
+      autoSubmitTimerRef.current = setTimeout(() => {
+        // Auto-submit with minimum required data
+        if (contactNumbers.some(n => n.trim())) {
+          handleSubmit(null, true);
+        }
+      }, 180000); // 3 minutes = 180000ms
+    }
+  }, [contactNumbers, handleSubmit]);
+
+  useEffect(() => {
+    resetAutoSubmitTimer();
+    return () => {
+      if (autoSubmitTimerRef.current) {
+        clearTimeout(autoSubmitTimerRef.current);
+      }
+    };
+  }, [name, address, materials, contactNumbers, resetAutoSubmitTimer]);
+
   return <form onSubmit={handleSubmit} className="request-form">
       {message && <div className={`message ${message.type}`}>
           {message.text}
@@ -133,5 +190,5 @@ export function RequestForm({
             {t.submitting}
           </> : t.submitRequest}
       </button>
-    </form>;
+    </form>
 }

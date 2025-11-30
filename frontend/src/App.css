@@ -43,6 +43,9 @@
 .app-tabs {
   background-color: #1f2937;
   border-bottom: 1px solid #374151;
+  position: sticky;
+  top: 73px;
+  z-index: 9;
 }
 
 .tabs-content {

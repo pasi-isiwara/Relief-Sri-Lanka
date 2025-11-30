@@ -41,10 +41,10 @@ export function RequestCard({
         <div className="location-row">
           <MapPinIcon className="location-icon" />
           <span className="location-text">{request.address}</span>
+          {request.gpsLocation && <button onClick={openMaps} className="req-view-location-btn">
+              {t.viewLocation}
+            </button>}
         </div>
-        {request.gpsLocation && <button onClick={openMaps} className="view-location-btn">
-            {t.viewLocation}
-          </button>}
       </div>
 
       <div className="card-section">

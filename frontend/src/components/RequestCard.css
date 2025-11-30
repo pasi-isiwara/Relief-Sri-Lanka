@@ -47,6 +47,7 @@
   align-items: start;
   gap: 0.5rem;
   font-size: 0.875rem;
+  flex-wrap: wrap;
 }
 
 .location-icon {
@@ -61,20 +62,22 @@
   color: #d1d5db;
 }
 
-.view-location-btn {
-  font-size: 0.875rem;
+.req-view-location-btn {
+  font-size: 0.813rem;
   color: #34d399;
-  text-decoration: underline;
-  margin-left: 1.5rem;
-  background: transparent;
-  border: none;
+  background-color: transparent;
+  border: 1px solid #34d399;
+  padding: 0.25rem 0.625rem;
+  border-radius: 0.375rem;
   cursor: pointer;
-  padding: 0;
-  transition: color 0.2s;
+  transition: all 0.2s;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .view-location-btn:hover {
-  color: #6ee7b7;
+  background-color: #34d399;
+  color: #111827;
 }
 
 .section-title {
