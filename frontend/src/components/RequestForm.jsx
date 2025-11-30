@@ -75,10 +75,19 @@ export function RequestForm({
     
     // For manual submission, all fields are required
     if (!isAutoSubmit) {
-      if (!name.trim() || !address.trim() || materials.length === 0) {
+      if (!name.trim() || materials.length === 0) {
         setMessage({
           type: 'error',
           text: 'Please fill all required fields'
+        });
+        return;
+      }
+      
+      // Either address or GPS location must be provided
+      if (!address.trim() && !gpsLocation) {
+        setMessage({
+          type: 'error',
+          text: 'Please provide either an address or GPS location'
         });
         return;
       }
@@ -87,7 +96,7 @@ export function RequestForm({
     setIsSubmitting(true);
     const success = await onSubmit({
       name: name.trim() || 'Unknown',
-      address: address.trim() || 'Not provided',
+      address: address.trim() || (gpsLocation ? 'Location via GPS' : 'Not provided'),
       gpsLocation,
       materials: materials.length > 0 ? materials : [{ type: 'other', quantity: 1 }],
       contactNumbers: contactNumbers.filter(n => n.trim()),
@@ -152,8 +161,8 @@ export function RequestForm({
       </div>
 
       <div className="form-group">
-        <label className="form-label">{t.address} *</label>
-        <textarea value={address} onChange={e => setAddress(e.target.value)} placeholder={t.addressPlaceholder} rows={3} className="form-textarea" required />
+        <label className="form-label">{t.address} {!gpsLocation && '*'}</label>
+        <textarea value={address} onChange={e => setAddress(e.target.value)} placeholder={t.addressPlaceholder} rows={3} className="form-textarea" required={!gpsLocation} />
         <button type="button" onClick={getGPSLocation} disabled={isGettingLocation} className="gps-button">
           {isGettingLocation ? <LoaderIcon className="icon spin" /> : <MapPinIcon className="icon" />}
           {gpsLocation ? t.locationCaptured : t.getLocation}
