@@ -1,0 +1,111 @@
+
+.app {
+  min-height: 100vh;
+  background-color: #111827;
+  color: white;
+}
+
+.app-header {
+  background-color: #1f2937;
+  border-bottom: 1px solid #374151;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-content {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.app-icon {
+  width: 2rem;
+  height: 2rem;
+  color: #10b981;
+}
+
+.app-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.app-tabs {
+  background-color: #1f2937;
+  border-bottom: 1px solid #374151;
+}
+
+.tabs-content {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.tabs-buttons {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 1rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  position: relative;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+}
+
+.tab-button:hover {
+  color: white;
+}
+
+.tab-button.active {
+  color: #34d399;
+}
+
+.tab-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #10b981;
+}
+
+.app-main {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+.app-footer {
+  background-color: #1f2937;
+  border-top: 1px solid #374151;
+  margin-top: 3rem;
+}
+
+.footer-content {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  margin: 0.5rem 0;
+}

@@ -1,0 +1,124 @@
+
+.material-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.category-container {
+  background-color: #1f2937;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.category-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: white;
+}
+
+.category-header:hover {
+  background-color: #374151;
+}
+
+.category-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.category-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #10b981;
+}
+
+.category-name {
+  font-weight: 500;
+}
+
+.selected-count {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+.materials-list {
+  padding: 0 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.material-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background-color: #374151;
+  transition: all 0.2s;
+}
+
+.material-item.selected {
+  background-color: rgba(16, 185, 129, 0.1);
+  border: 1px solid #059669;
+}
+
+.material-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  cursor: pointer;
+}
+
+.material-checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 0.25rem;
+  border: 1px solid #4b5563;
+  background-color: #1f2937;
+  cursor: pointer;
+  accent-color: #059669;
+}
+
+.material-name {
+  font-size: 0.875rem;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quantity-btn {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25rem;
+  background-color: #1f2937;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.quantity-btn:hover {
+  background-color: #4b5563;
+}
+
+.quantity-value {
+  width: 3rem;
+  text-align: center;
+  font-weight: 500;
+}
