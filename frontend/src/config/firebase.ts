@@ -1,14 +1,16 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
-// Firebase config from environment variables
+// TODO: Replace with your Firebase config
+// Get this from Firebase Console > Project Settings > General > Your apps
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID
+  apiKey: "AIzaSyBZS3lMPMmIK7iqeEp5MFLWEzLTDiq6fTE",
+  authDomain: "relief-sri-lanka.firebaseapp.com",
+  projectId: "relief-sri-lanka",
+  storageBucket: "relief-sri-lanka.firebasestorage.app",
+  messagingSenderId: "429766737380",
+  appId: "1:429766737380:web:0b425a55f61f5efdbadbf1",
+  measurementId: "G-7CZ99DG7S0"
 };
 
 // Initialize Firebase
