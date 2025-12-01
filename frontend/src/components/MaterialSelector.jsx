@@ -51,7 +51,7 @@ export function MaterialSelector({
     return selectedMaterials.some(m => m.type === type);
   };
   const getQuantity = type => {
-    return selectedMaterials.find(m => m.type === type)?.quantity || 1;
+    return selectedMaterials.find(m => m.type === type)?.quantity || 0;
   };
 
   const getUnit = type => {
@@ -63,15 +63,15 @@ export function MaterialSelector({
     } else {
       onChange([...selectedMaterials, {
         type,
-        quantity: 1
+        quantity: 0
       }]);
     }
   };
   const updateQuantity = (type, quantity) => {
-    const numQuantity = parseInt(quantity) || 1;
+    const numQuantity = parseInt(quantity) || 0;
     onChange(selectedMaterials.map(m => m.type === type ? {
       ...m,
-      quantity: Math.max(1, numQuantity)
+      quantity: Math.max(0, numQuantity)
     } : m));
   };
   return <div className="material-selector">
@@ -100,7 +100,7 @@ export function MaterialSelector({
                           -
                         </button>
                         <div className="quantity-with-unit">
-                          <input type="number" min="1" value={getQuantity(type)} onChange={e => updateQuantity(type, e.target.value)} className="quantity-input" />
+                          <input type="number" min="0" value={getQuantity(type)} onChange={e => updateQuantity(type, e.target.value)} className="quantity-input" />
                           <span className="quantity-unit">{getUnit(type)}</span>
                         </div>
                         <button type="button" onClick={() => updateQuantity(type, getQuantity(type) + 1)} className="quantity-btn">
