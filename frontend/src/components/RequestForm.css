@@ -178,6 +178,37 @@
   cursor: not-allowed;
 }
 
+.submit-button.success {
+  background-color: #059669;
+  animation: successPulse 0.5s ease-in-out;
+}
+
+.submit-button.error {
+  background-color: #dc2626;
+  animation: errorShake 0.5s ease-in-out;
+}
+
+@keyframes successPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes errorShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
 .icon {
   width: 1.25rem;
   height: 1.25rem;

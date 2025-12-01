@@ -17,7 +17,7 @@ export function RequestForm({
   const [contactNumbers, setContactNumbers] = useState(['']);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isGettingLocation, setIsGettingLocation] = useState(false);
-  const [message, setMessage] = useState(null);
+  const [submitButtonMessage, setSubmitButtonMessage] = useState(null);
   const autoSubmitTimerRef = useRef(null);
   
   const getGPSLocation = () => {
@@ -31,10 +31,7 @@ export function RequestForm({
     }, error => {
       console.error('Error getting location:', error);
       setIsGettingLocation(false);
-      setMessage({
-        type: 'error',
-        text: 'Could not get location. Please enter address manually.'
-      });
+      alert('Could not get location. Please enter address manually.');
     });
   };
 
@@ -57,7 +54,7 @@ export function RequestForm({
       e.preventDefault();
     }
     
-    setMessage(null);
+    setSubmitButtonMessage(null);
     
     // Clear auto-submit timer
     if (autoSubmitTimerRef.current) {
@@ -66,29 +63,32 @@ export function RequestForm({
     
     // Validation: Phone number is always required
     if (!contactNumbers.some(n => n.trim())) {
-      setMessage({
+      setSubmitButtonMessage({
         type: 'error',
         text: 'At least one contact number is required'
       });
+      setTimeout(() => setSubmitButtonMessage(null), 3000);
       return;
     }
     
     // For manual submission, all fields are required
     if (!isAutoSubmit) {
       if (!name.trim() || materials.length === 0) {
-        setMessage({
+        setSubmitButtonMessage({
           type: 'error',
           text: 'Please fill all required fields'
         });
+        setTimeout(() => setSubmitButtonMessage(null), 3000);
         return;
       }
       
       // Either address or GPS location must be provided
       if (!address.trim() && !gpsLocation) {
-        setMessage({
+        setSubmitButtonMessage({
           type: 'error',
           text: 'Please provide either an address or GPS location'
         });
+        setTimeout(() => setSubmitButtonMessage(null), 3000);
         return;
       }
     }
@@ -105,7 +105,7 @@ export function RequestForm({
     });
     setIsSubmitting(false);
     if (success) {
-      setMessage({
+      setSubmitButtonMessage({
         type: 'success',
         text: isAutoSubmit ? 'Request auto-submitted successfully' : t.requestSubmitted
       });
@@ -114,12 +114,13 @@ export function RequestForm({
       setGpsLocation(null);
       setMaterials([]);
       setContactNumbers(['']);
-      setTimeout(() => setMessage(null), 5000);
+      setTimeout(() => setSubmitButtonMessage(null), 5000);
     } else {
-      setMessage({
+      setSubmitButtonMessage({
         type: 'error',
         text: t.errorSubmitting
       });
+      setTimeout(() => setSubmitButtonMessage(null), 3000);
     }
   }, [contactNumbers, materials, name, address, gpsLocation, language, onSubmit, t.requestSubmitted, t.errorSubmitting]);
 
@@ -151,10 +152,6 @@ export function RequestForm({
   }, [name, address, materials, contactNumbers, resetAutoSubmitTimer]);
 
   return <form onSubmit={handleSubmit} className="request-form">
-      {message && <div className={`message ${message.type}`}>
-          {message.text}
-        </div>}
-
       <div className="form-group">
         <label className="form-label">{t.name} *</label>
         <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder={t.namePlaceholder} className="form-input" required />
@@ -193,8 +190,10 @@ export function RequestForm({
         <MaterialSelector selectedMaterials={materials} onChange={setMaterials} />
       </div>
 
-      <button type="submit" disabled={isSubmitting} className="submit-button">
-        {isSubmitting ? <>
+      <button type="submit" disabled={isSubmitting} className={`submit-button ${submitButtonMessage?.type || ''}`}>
+        {submitButtonMessage ? <>
+            {submitButtonMessage.text}
+          </> : isSubmitting ? <>
             <LoaderIcon className="icon spin" />
             {t.submitting}
           </> : t.submitRequest}
