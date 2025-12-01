@@ -53,6 +53,20 @@ export const translations = {
       clothing: 'Clothing',
       other: 'Other'
     },
+    units: {
+      kg: 'kg',
+      loaves: 'loaves',
+      cans: 'cans',
+      packages: 'packages',
+      kits: 'kits',
+      packs: 'packs',
+      boxes: 'boxes',
+      liters: 'liters',
+      sheets: 'sheets',
+      pieces: 'pieces',
+      units: 'units',
+      sets: 'sets'
+    },
     donationPage: {
       title: 'Support Flood Relief Efforts',
       subtitle: 'Your donation can make a difference in the lives of those affected by floods',
@@ -127,6 +141,20 @@ export const translations = {
       clothing: 'ඇඳුම්',
       other: 'වෙනත්'
     },
+    units: {
+      kg: 'කි.ග්‍රෑ',
+      loaves: 'පාන්',
+      cans: 'කෑන්',
+      packages: 'පැකේජ',
+      kits: 'කට්ටල',
+      packs: 'පැකට්',
+      boxes: 'පෙට්ටි',
+      liters: 'ලීටර්',
+      sheets: 'තහඩු',
+      pieces: 'ඒකක',
+      units: 'ඒකක',
+      sets: 'කට්ටල'
+    },
     donationPage: {
       title: 'ගංවතුර සහන ප්‍රයත්නයන්ට සහාය වන්න',
       subtitle: 'ඔබේ පරිත්‍යාගය ගංවතුරෙන් පීඩාවට පත් අයගේ ජීවිතවල වෙනසක් කළ හැකිය',
@@ -200,6 +228,20 @@ export const translations = {
       shelter: 'தங்குமிடம்',
       clothing: 'உடைகள்',
       other: 'மற்றவை'
+    },
+    units: {
+      kg: 'கிலோ',
+      loaves: 'ரொட்டிகள்',
+      cans: 'கேன்கள்',
+      packages: 'பொதிகள்',
+      kits: 'பெட்டிகள்',
+      packs: 'பேக்குகள்',
+      boxes: 'பெட்டிகள்',
+      liters: 'லிட்டர்',
+      sheets: 'தாள்கள்',
+      pieces: 'துண்டுகள்',
+      units: 'அலகுகள்',
+      sets: 'தொகுப்புகள்'
     },
     donationPage: {
       title: 'வெள்ள நிவாரண முயற்சிகளுக்கு ஆதரவு',

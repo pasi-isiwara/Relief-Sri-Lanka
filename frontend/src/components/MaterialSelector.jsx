@@ -18,6 +18,27 @@ const categoryIcons = {
   clothing: ShirtIcon,
   other: BatteryIcon
 };
+
+const materialUnits = {
+  rice: 'kg',
+  bread: 'loaves',
+  canned_food: 'cans',
+  baby_food: 'packages',
+  first_aid: 'kits',
+  prescription: 'packs',
+  pain_relief: 'boxes',
+  drinking_water: 'liters',
+  purification_tablets: 'packs',
+  tarpaulin: 'sheets',
+  blankets: 'pieces',
+  tents: 'units',
+  adult_clothing: 'sets',
+  children_clothing: 'sets',
+  infant_clothing: 'sets',
+  batteries: 'packs',
+  flashlights: 'pieces',
+  phone_chargers: 'pieces'
+};
 export function MaterialSelector({
   selectedMaterials,
   onChange
@@ -32,6 +53,10 @@ export function MaterialSelector({
   const getQuantity = type => {
     return selectedMaterials.find(m => m.type === type)?.quantity || 1;
   };
+
+  const getUnit = type => {
+    return t.units?.[materialUnits[type]] || materialUnits[type] || '';
+  };
   const toggleMaterial = type => {
     if (isSelected(type)) {
       onChange(selectedMaterials.filter(m => m.type !== type));
@@ -43,9 +68,10 @@ export function MaterialSelector({
     }
   };
   const updateQuantity = (type, quantity) => {
+    const numQuantity = parseInt(quantity) || 1;
     onChange(selectedMaterials.map(m => m.type === type ? {
       ...m,
-      quantity: Math.max(1, quantity)
+      quantity: Math.max(1, numQuantity)
     } : m));
   };
   return <div className="material-selector">
@@ -70,11 +96,14 @@ export function MaterialSelector({
                     </label>
 
                     {isSelected(type) && <div className="quantity-controls">
-                        <button onClick={() => updateQuantity(type, getQuantity(type) - 1)} className="quantity-btn">
+                        <button type="button" onClick={() => updateQuantity(type, getQuantity(type) - 1)} className="quantity-btn">
                           -
                         </button>
-                        <span className="quantity-value">{getQuantity(type)}</span>
-                        <button onClick={() => updateQuantity(type, getQuantity(type) + 1)} className="quantity-btn">
+                        <div className="quantity-with-unit">
+                          <input type="number" min="1" value={getQuantity(type)} onChange={e => updateQuantity(type, e.target.value)} className="quantity-input" />
+                          <span className="quantity-unit">{getUnit(type)}</span>
+                        </div>
+                        <button type="button" onClick={() => updateQuantity(type, getQuantity(type) + 1)} className="quantity-btn">
                           +
                         </button>
                       </div>}

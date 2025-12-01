@@ -99,6 +99,18 @@
   gap: 0.5rem;
 }
 
+.quantity-with-unit {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quantity-unit {
+  font-size: 0.875rem;
+  color: #9ca3af;
+  min-width: 3rem;
+}
+
 .quantity-btn {
   width: 2rem;
   height: 2rem;
@@ -121,4 +133,29 @@
   width: 3rem;
   text-align: center;
   font-weight: 500;
+}
+
+.quantity-input {
+  width: 4rem;
+  height: 2rem;
+  text-align: center;
+  font-weight: 500;
+  background-color: #1f2937;
+  border: 1px solid #4b5563;
+  border-radius: 0.25rem;
+  color: white;
+  font-size: 0.875rem;
+  padding: 0.25rem;
+  transition: all 0.2s;
+}
+
+.quantity-input:focus {
+  outline: none;
+  border-color: #10b981;
+  background-color: #374151;
+}
+
+.quantity-input::-webkit-inner-spin-button,
+.quantity-input::-webkit-outer-spin-button {
+  opacity: 1;
 }
